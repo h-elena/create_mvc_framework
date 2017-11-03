@@ -23,7 +23,7 @@ class Index extends Controller {
     public function actionIndex(){
         $params = [];
         $params['title'] = 'Главная';
-        return $this->view->render('index', $params);
+        return $this->view->render('index', $this->controllerNane, $params);
     }
 
     public function actionTest1(){
