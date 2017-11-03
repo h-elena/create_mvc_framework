@@ -1,0 +1,31 @@
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.navbar-inverse {
+    background-color: #eeeeee;
+    border-color: #eeeeee;
+}
+
+.navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #101010;
+}
+
+.navbar-right {
+    float: right !important;
+    margin-right: -15px;
+}
+.navbar-nav {
+    float: left;
+    margin: 0;
+    margin-right: 0px;
+}
+
