@@ -29,12 +29,13 @@ class Index extends Controller {
     public function actionTest1(){
         $params = [];
         $params['title'] = 'Test1';
-        $params['text'] = 'Дан текст с включенными в него тегами следующего вида: 
-            [НАИМЕНОВАНИЕ_ТЕГА:описание]данные[/НАИМЕНОВАНИЕ_ТЕГА]
-            Дан текст с включенными в него тегами следующего вида: 
-            [НАИМЕНОВАНИЕ_ТЕГА1:описание1]данные1[/НАИМЕНОВАНИЕ_ТЕГА1]';
+        $params['text'] = 'Дан текст с включенными в него тегами следующего вида:<br>
+            [НАИМЕНОВАНИЕ_ТЕГА:описание]данные[/НАИМЕНОВАНИЕ_ТЕГА]<br>
+             Дан текст с включенными в него тегами следующего вида: <br>
+            [НАИМЕНОВАНИЕ_ТЕГА1]данные1[/НАИМЕНОВАНИЕ_ТЕГА1] fgfb dvdf';
         $params['masTagData'] = WorkWithString::findTagAndData($params['text']);
         $params['masTagDesc'] = WorkWithString::findTagAndDesc($params['text']);
+        WorkWithString::findTagAndData($params['text']);
         return $this->view->render('test1', $this->controllerNane, $params);
     }
 
@@ -44,9 +45,9 @@ class Index extends Controller {
 
         $model = new Test2();
         if(empty($model->error)) {
-            if ($tree = $model->getModel()) {
+            if ($tree = $model->getAllTreeFromSql()) {
                 if (!empty($tree)) {
-                    $params['tree'] = $model->printTree($tree);
+                    $params['tree'] = $model->outTree($tree);
                 }
             }
             else {

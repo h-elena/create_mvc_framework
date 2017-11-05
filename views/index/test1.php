@@ -1,7 +1,7 @@
 <div class="body-content">
     <h1><?php echo $params['title']?></h1>
     <div class="row">
-        <div>
+        <div class="col-md-10">
             <p><?php echo $params['text']?></p>
         </div>
         <div class="col-md">
@@ -18,4 +18,4 @@
                 echo '</pre>';
                 ?></p>
         </div>
-</div>
+    </div>

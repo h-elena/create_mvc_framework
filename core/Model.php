@@ -13,6 +13,13 @@ class Model
         $this->table = 'test';
     }
 
+    /**
+     * Get data from database table
+     *
+     * @param null $variables
+     * @param array $params
+     * @return array|bool
+     */
     public function getModel($variables = null, $params = []){
         $db = new Connection();
         if(!$db->connect()){
@@ -33,13 +40,20 @@ class Model
         return $db->getSelectSql($sql, $params);
     }
 
-    public function getSql($sql){
+    /**
+     * Get data from sql query
+     *
+     * @param $sql
+     * @param string $typeOutputMassive
+     * @return array|bool
+     */
+    public function getSql($sql, $typeOutputMassive = 'assoc'){
         $db = new Connection();
         if(!$db->connect()){
             $this->error = $db->error;
             return false;
         }
-        return $db->getSelectSql($sql);
+        return $db->getSelectSql($sql, [], $typeOutputMassive);
     }
 
 }

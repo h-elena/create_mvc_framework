@@ -2,7 +2,6 @@
 
 namespace Helpers;
 
-
 /**
  * Class Connection
  *  Class for work with database
@@ -25,6 +24,11 @@ class Connection
         $this->dbPassw = $config['db']['passw'];
     }
 
+    /**
+     * Connection with database in PDO
+     *
+     * @return bool
+     */
     public function connect(){
         if(!empty($this->error)){
             return false;
@@ -43,7 +47,15 @@ class Connection
         return true;
     }
 
-    public function getSelectSql($sql, $params = []){
+    /**
+     * Sql query in database
+     *
+     * @param $sql
+     * @param array $params
+     * @param string $typeOutputMassive
+     * @return array|bool
+     */
+    public function getSelectSql($sql, $params = [], $typeOutputMassive = 'assoc'){
         if(empty($sql)){
             $this->error = 'Пустой запрос.';
             return false;
@@ -55,7 +67,13 @@ class Connection
         else{
             $statement->execute($params);
         }
-        $statement->setFetchMode(\PDO::FETCH_ASSOC);
+        if($typeOutputMassive == 'assoc'){
+            $statement->setFetchMode(\PDO::FETCH_ASSOC);
+        }
+        elseif($typeOutputMassive == 'num'){
+            $statement->setFetchMode(\PDO::FETCH_NUM);
+        }
+
         $result = [];
         while($res = $statement->fetch()) {
             $result[] = $res;

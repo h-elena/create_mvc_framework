@@ -14,10 +14,6 @@ class Route {
      */
     protected static $_instance;
 
-    /**
-     * Protected constructor to prevent creating a new instance of the
-     * *Singleton* via the `new` operator from outside of this class.
-     */
     protected function __construct() {
         spl_autoload_extensions('.php');
         spl_autoload_register();
@@ -51,6 +47,11 @@ class Route {
         return self::$_instance;
     }
 
+    /**
+     * Run all system
+     *
+     * @return Route|Singleton
+     */
     public function run(){
         $actionName = 'Index';
         $controllerName = 'Index';
